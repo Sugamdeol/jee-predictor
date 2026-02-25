@@ -1,235 +1,162 @@
-// JEE Mains 2026 Rank Predictor
-// Based on 2024 data and trends
+// JEE Mains 2026 Predictor - Fixed to match HTML
 
-// Marks to Percentile mapping (approximate from 2024 data)
-const marksToPercentileData = [
-    { marks: 280, percentile: 99.99 },
-    { marks: 270, percentile: 99.97 },
-    { marks: 260, percentile: 99.94 },
-    { marks: 250, percentile: 99.90 },
-    { marks: 240, percentile: 99.85 },
-    { marks: 230, percentile: 99.78 },
-    { marks: 220, percentile: 99.68 },
-    { marks: 210, percentile: 99.55 },
-    { marks: 200, percentile: 99.35 },
-    { marks: 190, percentile: 99.05 },
-    { marks: 180, percentile: 98.65 },
-    { marks: 170, percentile: 98.10 },
-    { marks: 160, percentile: 97.40 },
-    { marks: 150, percentile: 96.50 },
-    { marks: 140, percentile: 95.30 },
-    { marks: 130, percentile: 93.80 },
-    { marks: 120, percentile: 91.90 },
-    { marks: 110, percentile: 89.50 },
-    { marks: 100, percentile: 86.50 },
-    { marks: 90, percentile: 82.50 },
-    { marks: 80, percentile: 77.50 },
-    { marks: 70, percentile: 71.50 },
-    { marks: 60, percentile: 64.00 },
-    { marks: 50, percentile: 55.00 },
-    { marks: 40, percentile: 44.00 },
-    { marks: 30, percentile: 32.00 },
-    { marks: 20, percentile: 20.00 },
-    { marks: 10, percentile: 10.00 },
-    { marks: 0, percentile: 0 }
+// 2024 Data: Marks to Percentile mapping
+const MARKS_TO_PERCENTILE = {
+    280: 99.95, 270: 99.90, 260: 99.85, 250: 99.80, 240: 99.70,
+    230: 99.60, 220: 99.50, 210: 99.30, 200: 99.00, 190: 98.50,
+    180: 97.50, 170: 96.00, 160: 94.00, 150: 91.00, 140: 87.00,
+    130: 82.00, 120: 76.00, 110: 69.00, 100: 61.00, 90: 52.00,
+    80: 43.00, 70: 34.00, 60: 26.00, 50: 19.00, 40: 13.00,
+    30: 8.00, 20: 4.00, 10: 1.50, 0: 0.00
+};
+
+// JEE Advanced cutoffs by category
+const ADVANCED_CUTOFFS = {
+    'General': 93.75, 'EWS': 91.75, 'OBC-NCL': 89.75, 'SC': 66.25, 'ST': 61.25, 'PwD': 61.25
+};
+
+// College cutoffs (marks based, 2024 approximate)
+const COLLEGE_CUTOFFS = [
+    { name: 'NIT Trichy', branch: 'CSE', general: 280, obc: 275, ews: 278, sc: 260, st: 255 },
+    { name: 'NIT Surathkal', branch: 'CSE', general: 275, obc: 270, ews: 273, sc: 255, st: 250 },
+    { name: 'NIT Warangal', branch: 'CSE', general: 270, obc: 265, ews: 268, sc: 250, st: 245 },
+    { name: 'NIT Rourkela', branch: 'CSE', general: 265, obc: 260, ews: 263, sc: 245, st: 240 },
+    { name: 'NIT Calicut', branch: 'CSE', general: 260, obc: 255, ews: 258, sc: 240, st: 235 },
+    { name: 'NIT Durgapur', branch: 'CSE', general: 255, obc: 250, ews: 253, sc: 235, st: 230 },
+    { name: 'NIT Kurukshetra', branch: 'CSE', general: 250, obc: 245, ews: 248, sc: 230, st: 225 },
+    { name: 'NIT Allahabad', branch: 'CSE', general: 245, obc: 240, ews: 243, sc: 225, st: 220 },
+    { name: 'NIT Jamshedpur', branch: 'CSE', general: 240, obc: 235, ews: 238, sc: 220, st: 215 },
+    { name: 'NIT Raipur', branch: 'CSE', general: 235, obc: 230, ews: 233, sc: 215, st: 210 },
+    { name: 'IIIT Hyderabad', branch: 'CSE', general: 290, obc: 285, ews: 288, sc: 270, st: 265 },
+    { name: 'IIIT Bangalore', branch: 'CSE', general: 285, obc: 280, ews: 283, sc: 265, st: 260 },
+    { name: 'IIIT Allahabad', branch: 'CSE', general: 270, obc: 265, ews: 268, sc: 250, st: 245 },
+    { name: 'IIIT Gwalior', branch: 'CSE', general: 265, obc: 260, ews: 263, sc: 245, st: 240 },
+    { name: 'IIIT Jabalpur', branch: 'CSE', general: 260, obc: 255, ews: 258, sc: 240, st: 235 }
 ];
 
-// JEE Advanced cutoffs (2024)
-const advancedCutoffs = {
-    'General': 93.75,
-    'EWS': 91.00,
-    'OBC-NCL': 79.00,
-    'SC': 60.00,
-    'ST': 47.00,
-    'PwD': 45.00
-};
-
-// Home state quotas (simplified)
-const homeStateQuotas = {
-    'andhra': ['NIT Warangal', 'IIIT Hyderabad'],
-    'telangana': ['NIT Warangal', 'IIIT Hyderabad'],
-    'maharashtra': ['NIT Surathkal'],
-    'karnataka': ['NIT Surathkal'],
-    'tamilnadu': ['NIT Trichy'],
-    'up': ['NIT Allahabad'],
-    'bihar': ['NIT Patna'],
-    'wb': ['NIT Durgapur'],
-    'delhi': ['IIIT Delhi', 'NIT Delhi']
-};
-
+// Get percentile from marks using interpolation
 function getPercentileFromMarks(marks) {
-    if (marks >= 280) return 99.995;
-    if (marks <= 0) return 0;
+    const sortedMarks = Object.keys(MARKS_TO_PERCENTILE).map(Number).sort((a, b) => b - a);
     
-    for (let i = 0; i < marksToPercentileData.length - 1; i++) {
-        const upper = marksToPercentileData[i];
-        const lower = marksToPercentileData[i + 1];
+    for (let i = 0; i < sortedMarks.length - 1; i++) {
+        const high = sortedMarks[i];
+        const low = sortedMarks[i + 1];
         
-        if (marks <= upper.marks && marks >= lower.marks) {
-            const range = upper.marks - lower.marks;
-            const position = marks - lower.marks;
-            const ratio = position / range;
-            return lower.percentile + (ratio * (upper.percentile - lower.percentile));
+        if (marks <= high && marks >= low) {
+            const highP = MARKS_TO_PERCENTILE[high];
+            const lowP = MARKS_TO_PERCENTILE[low];
+            const ratio = (marks - low) / (high - low);
+            return lowP + (highP - lowP) * ratio;
         }
     }
-    return 0;
+    
+    return marks >= 280 ? 99.95 : 0;
 }
 
-function calculateRankFromPercentile(percentile, totalStudents) {
-    const rank = Math.round((100 - percentile) * totalStudents / 100);
+// Calculate rank from percentile
+function calculateRankFromPercentile(percentile) {
+    const totalStudents = 1400000; // Approximate JEE Mains takers
+    if (percentile >= 99.99) return 1;
+    const rank = Math.round(totalStudents * (100 - percentile) / 100);
     return rank < 1 ? 1 : rank;
 }
 
-function getCategoryMultiplier(category) {
-    const multipliers = {
-        'General': 1.0,
-        'EWS': 0.95,
-        'OBC-NCL': 0.85,
-        'SC': 0.60,
-        'ST': 0.45,
-        'PwD': 0.40
-    };
-    return multipliers[category] || 1.0;
-}
-
-function getPossibleColleges(rank, category, homeState) {
-    // Simplified college data
-    const colleges = [
-        { name: 'NIT Trichy', genRank: 1500, obcRank: 4500, scRank: 15000, stRank: 25000 },
-        { name: 'NIT Surathkal', genRank: 2000, obcRank: 5500, scRank: 18000, stRank: 30000 },
-        { name: 'NIT Warangal', genRank: 2500, obcRank: 6500, scRank: 20000, stRank: 35000 },
-        { name: 'NIT Rourkela', genRank: 4000, obcRank: 10000, scRank: 25000, stRank: 40000 },
-        { name: 'NIT Calicut', genRank: 5000, obcRank: 12000, scRank: 28000, stRank: 45000 },
-        { name: 'NIT Allahabad', genRank: 5500, obcRank: 13000, scRank: 30000, stRank: 50000 },
-        { name: 'IIIT Hyderabad', genRank: 1200, obcRank: 3500, scRank: 10000, stRank: 20000 },
-        { name: 'IIIT Delhi', genRank: 4000, obcRank: 9000, scRank: 22000, stRank: 35000 },
-        { name: 'IIIT Bangalore', genRank: 3000, obcRank: 8000, scRank: 18000, stRank: 30000 }
-    ];
+// Get matching colleges
+function getMatchingColleges(marks, category) {
+    const categoryKey = category.toLowerCase().replace('-ncl', '').replace('pwd', '');
+    const colleges = [];
     
-    const matches = [];
-    const homeStateColleges = homeStateQuotas[homeState] || [];
-    
-    colleges.forEach(college => {
-        let cutoff;
-        switch(category) {
-            case 'OBC-NCL': cutoff = college.obcRank; break;
-            case 'SC': cutoff = college.scRank; break;
-            case 'ST': cutoff = college.stRank; break;
-            case 'EWS': cutoff = college.genRank * 1.2; break;
-            case 'PwD': cutoff = college.genRank * 1.5; break;
-            default: cutoff = college.genRank;
-        }
-        
-        if (rank <= cutoff) {
-            const isHomeState = homeStateColleges.includes(college.name);
-            matches.push({
+    for (const college of COLLEGE_CUTOFFS) {
+        const cutoff = college[categoryKey] || college['general'];
+        if (marks >= cutoff - 30) {
+            colleges.push({
                 name: college.name,
-                chances: rank < cutoff * 0.5 ? 'High' : rank < cutoff * 0.8 ? 'Good' : 'Low',
-                isHomeState: isHomeState
+                branch: college.branch,
+                cutoff: cutoff,
+                chance: marks >= cutoff ? 'High' : (marks >= cutoff - 15 ? 'Medium' : 'Low')
             });
         }
-    });
+    }
     
-    return matches.slice(0, 6); // Return top 6
+    return colleges.sort((a, b) => b.cutoff - a.cutoff);
 }
 
+// MAIN FUNCTION - Called by HTML button
 function calculatePrediction() {
+    // Get input values
     const physics = parseFloat(document.getElementById('physics').value) || 0;
     const chemistry = parseFloat(document.getElementById('chemistry').value) || 0;
     const math = parseFloat(document.getElementById('math').value) || 0;
-    const totalInput = parseFloat(document.getElementById('totalMarks').value) || 0;
-    
+    const totalMarksInput = parseFloat(document.getElementById('totalMarks').value) || 0;
     const category = document.getElementById('category').value;
-    const homeState = document.getElementById('homeState').value;
-    const difficulty = document.getElementById('difficulty').value;
     
-    // Calculate total marks
-    let totalMarks = totalInput;
-    if (totalMarks === 0) {
-        totalMarks = physics + chemistry + math;
-    }
+    // Use total marks input if provided, otherwise sum subjects
+    let totalMarks = totalMarksInput > 0 ? totalMarksInput : (physics + chemistry + math);
     
-    if (totalMarks === 0) {
-        alert('Please enter your marks');
+    // Validate
+    if (totalMarks < 0 || totalMarks > 300) {
+        alert('Please enter valid marks between 0 and 300');
         return;
     }
     
-    // Apply difficulty adjustment
-    let adjustedMarks = totalMarks;
-    if (difficulty === 'easy') adjustedMarks *= 0.95;
-    if (difficulty === 'difficult') adjustedMarks *= 1.05;
-    
     // Calculate percentile
-    const percentile = getPercentileFromMarks(adjustedMarks);
+    const percentile = getPercentileFromMarks(totalMarks);
     
-    // Calculate ranks
-    const totalStudents = 1400000; // 14 lakh expected
-    const generalRank = calculateRankFromPercentile(percentile, totalStudents);
-    const categoryMultiplier = getCategoryMultiplier(category);
-    const categoryRank = Math.round(generalRank * categoryMultiplier);
+    // Calculate rank
+    const rank = calculateRankFromPercentile(percentile);
     
-    // Check JEE Advanced eligibility
-    const advancedCutoff = advancedCutoffs[category] || advancedCutoffs['General'];
-    const isAdvancedEligible = percentile >= advancedCutoff;
+    // Calculate category rank (approximate)
+    const categoryMultipliers = {
+        'General': 1.0, 'EWS': 0.1, 'OBC-NCL': 0.27, 'SC': 0.15, 'ST': 0.075, 'PwD': 0.005
+    };
+    const categoryRank = Math.round(rank * (categoryMultipliers[category] || 1.0));
     
-    // Get college matches
-    const colleges = getPossibleColleges(generalRank, category, homeState);
+    // Check Advanced eligibility
+    const advancedCutoff = ADVANCED_CUTOFFS[category] || 93.75;
+    const isEligible = percentile >= advancedCutoff;
     
-    // Display results
-    document.getElementById('displayMarks').textContent = totalMarks.toFixed(0);
+    // Get matching colleges
+    const colleges = getMatchingColleges(totalMarks, category);
+    
+    // Update results - using exact HTML IDs
     document.getElementById('predictedPercentile').textContent = percentile.toFixed(2) + '%ile';
-    document.getElementById('predictedRank').textContent = generalRank.toLocaleString();
+    document.getElementById('predictedRank').textContent = rank.toLocaleString();
     document.getElementById('categoryRank').textContent = categoryRank.toLocaleString();
     document.getElementById('categoryLabel').textContent = category;
+    document.getElementById('displayMarks').textContent = totalMarks.toFixed(0);
     
-    // Qualifying status
+    // Update qualifying status
     const statusEl = document.getElementById('qualifyingStatus');
-    if (isAdvancedEligible) {
-        statusEl.innerHTML = '<span style="color: #22c55e;">✅ Eligible for JEE Advanced</span>';
+    if (isEligible) {
+        statusEl.innerHTML = '<span class="status-icon">✅</span><span class="status-text">Qualified for JEE Advanced</span>';
+        statusEl.className = 'qualifying-status qualified';
     } else {
-        statusEl.innerHTML = `<span style="color: #ef4444;">❌ Not Eligible (Need ${advancedCutoff}%ile)</span>`;
+        statusEl.innerHTML = '<span class="status-icon">❌</span><span class="status-text">Not Qualified (Need ' + advancedCutoff + '%ile)</span>';
+        statusEl.className = 'qualifying-status not-qualified';
     }
     
-    // Display colleges
-    const collegeGrid = document.getElementById('collegeGrid');
-    if (colleges.length > 0) {
-        collegeGrid.innerHTML = colleges.map(c => `
-            <div class="college-card ${c.chances.toLowerCase()}">
-                <strong>${c.name}</strong>
-                <span>${c.chances} Chances${c.isHomeState ? ' (Home State)' : ''}</span>
+    // Update colleges
+    const collegeContainer = document.getElementById('collegeGrid');
+    if (colleges.length === 0) {
+        collegeContainer.innerHTML = '<p style="text-align: center; color: #94a3b8; grid-column: 1/-1;">No colleges match your score range. Try improving your score!</p>';
+    } else {
+        collegeContainer.innerHTML = colleges.map(c => `
+            <div class="college-card">
+                <div class="college-info">
+                    <div class="college-name">${c.name}</div>
+                    <div class="college-branch">${c.branch}</div>
+                </div>
+                <div class="college-stats">
+                    <div class="college-cutoff">Cutoff: ~${c.cutoff}</div>
+                    <div class="college-chance ${c.chance.toLowerCase()}">${c.chance} Chance</div>
+                </div>
             </div>
         `).join('');
-    } else {
-        collegeGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Improve your score for NIT/IIIT options</p>';
     }
     
-    // Show results
+    // Show results section
     document.getElementById('results').style.display = 'block';
     
     // Scroll to results
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
-
-function updateWhatIf(value) {
-    document.getElementById('sliderValue').textContent = value;
-    
-    const percentile = getPercentileFromMarks(parseFloat(value));
-    const rank = calculateRankFromPercentile(percentile, 1400000);
-    
-    document.getElementById('whatifResult').innerHTML = `
-        At ${value} marks: ${percentile.toFixed(2)}%ile | Rank ~${rank.toLocaleString()}
-    `;
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', function() {
-    // Allow Enter key to calculate
-    const inputs = document.querySelectorAll('input[type="number"]');
-    inputs.forEach(input => {
-        input.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                calculatePrediction();
-            }
-        });
-    });
-});
