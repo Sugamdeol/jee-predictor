@@ -1,0 +1,344 @@
+{
+  "iiits": [
+    {
+      "name": "IIIT Hyderabad",
+      "short_name": "IIITH",
+      "location": "Hyderabad",
+      "state": "Telangana",
+      "established": 1998,
+      "website": "www.iiit.ac.in",
+      "ranking": 1,
+      "type": "Public-Private Partnership",
+      "branches": {
+        "CSE": {
+          "opening": 500,
+          "closing": 2500
+        },
+        "ECE": {
+          "opening": 2500,
+          "closing": 6000
+        },
+        "CSE+MS": {
+          "opening": 2000,
+          "closing": 8000
+        }
+      }
+    },
+    {
+      "name": "IIIT Bangalore",
+      "short_name": "IIITB",
+      "location": "Bangalore",
+      "state": "Karnataka",
+      "established": 1999,
+      "website": "www.iiitb.ac.in",
+      "ranking": 2,
+      "type": "Public-Private Partnership",
+      "branches": {
+        "CSE": {
+          "opening": 2000,
+          "closing": 8000
+        },
+        "ECE": {
+          "opening": 7000,
+          "closing": 15000
+        },
+        "IT": {
+          "opening": 8000,
+          "closing": 18000
+        }
+      }
+    },
+    {
+      "name": "IIIT Delhi",
+      "short_name": "IIITD",
+      "location": "New Delhi",
+      "state": "Delhi",
+      "established": 2008,
+      "website": "www.iiitd.ac.in",
+      "ranking": 3,
+      "type": "State University",
+      "branches": {
+        "CSE": {
+          "opening": 3000,
+          "closing": 10000
+        },
+        "ECE": {
+          "opening": 9000,
+          "closing": 18000
+        },
+        "CSAM": {
+          "opening": 8000,
+          "closing": 20000
+        },
+        "CSSS": {
+          "opening": 10000,
+          "closing": 25000
+        },
+        "CSD": {
+          "opening": 12000,
+          "closing": 28000
+        }
+      }
+    },
+    {
+      "name": "IIIT Allahabad",
+      "short_name": "IIITA",
+      "location": "Prayagraj",
+      "state": "Uttar Pradesh",
+      "established": 1999,
+      "website": "www.iiita.ac.in",
+      "ranking": 4,
+      "type": "Institute of National Importance",
+      "branches": {
+        "IT": {
+          "opening": 5000,
+          "closing": 15000
+        },
+        "ECE": {
+          "opening": 12000,
+          "closing": 25000
+        },
+        "IT-BI": {
+          "opening": 15000,
+          "closing": 30000
+        }
+      }
+    },
+    {
+      "name": "IIIT Gwalior",
+      "short_name": "ABV-IIITM",
+      "location": "Gwalior",
+      "state": "Madhya Pradesh",
+      "established": 1997,
+      "website": "www.iiitm.ac.in",
+      "ranking": 5,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 8000,
+          "closing": 20000
+        },
+        "IT": {
+          "opening": 15000,
+          "closing": 30000
+        },
+        "IP": {
+          "opening": 20000,
+          "closing": 40000
+        }
+      }
+    },
+    {
+      "name": "IIIT Jabalpur",
+      "short_name": "PDPM-IIITDM",
+      "location": "Jabalpur",
+      "state": "Madhya Pradesh",
+      "established": 2005,
+      "website": "www.iiitdmj.ac.in",
+      "ranking": 6,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 12000,
+          "closing": 28000
+        },
+        "ECE": {
+          "opening": 20000,
+          "closing": 40000
+        },
+        "Mechatronics": {
+          "opening": 25000,
+          "closing": 50000
+        },
+        "Design": {
+          "opening": 30000,
+          "closing": 60000
+        }
+      }
+    },
+    {
+      "name": "IIIT Kancheepuram",
+      "short_name": "IIITDMK",
+      "location": "Kancheepuram",
+      "state": "Tamil Nadu",
+      "established": 2007,
+      "website": "www.iiitdm.ac.in",
+      "ranking": 7,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 15000,
+          "closing": 35000
+        },
+        "ECE": {
+          "opening": 25000,
+          "closing": 50000
+        },
+        "Mechanical": {
+          "opening": 35000,
+          "closing": 70000
+        }
+      }
+    },
+    {
+      "name": "IIIT Guwahati",
+      "short_name": "IIITG",
+      "location": "Guwahati",
+      "state": "Assam",
+      "established": 2013,
+      "website": "www.iiitg.ac.in",
+      "ranking": 8,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 20000,
+          "closing": 45000
+        },
+        "ECE": {
+          "opening": 35000,
+          "closing": 65000
+        }
+      }
+    },
+    {
+      "name": "IIIT Kota",
+      "short_name": "IIITK",
+      "location": "Kota",
+      "state": "Rajasthan",
+      "established": 2013,
+      "website": "www.iiitkota.ac.in",
+      "ranking": 9,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 18000,
+          "closing": 40000
+        },
+        "ECE": {
+          "opening": 30000,
+          "closing": 60000
+        }
+      }
+    },
+    {
+      "name": "IIIT Sri City",
+      "short_name": "IIITS",
+      "location": "Sri City",
+      "state": "Andhra Pradesh",
+      "established": 2013,
+      "website": "www.iiits.ac.in",
+      "ranking": 10,
+      "type": "Public-Private Partnership",
+      "branches": {
+        "CSE": {
+          "opening": 22000,
+          "closing": 50000
+        },
+        "ECE": {
+          "opening": 40000,
+          "closing": 75000
+        }
+      }
+    },
+    {
+      "name": "IIIT Vadodara",
+      "short_name": "IIITV",
+      "location": "Vadodara",
+      "state": "Gujarat",
+      "established": 2013,
+      "website": "www.iiitvadodara.ac.in",
+      "ranking": 11,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 25000,
+          "closing": 55000
+        },
+        "IT": {
+          "opening": 45000,
+          "closing": 80000
+        }
+      }
+    },
+    {
+      "name": "IIIT Nagpur",
+      "short_name": "IIITN",
+      "location": "Nagpur",
+      "state": "Maharashtra",
+      "established": 2016,
+      "website": "www.iiitn.ac.in",
+      "ranking": 12,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 30000,
+          "closing": 65000
+        },
+        "ECE": {
+          "opening": 50000,
+          "closing": 90000
+        }
+      }
+    },
+    {
+      "name": "IIIT Pune",
+      "short_name": "IIITP",
+      "location": "Pune",
+      "state": "Maharashtra",
+      "established": 2016,
+      "website": "www.iiitp.ac.in",
+      "ranking": 13,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 35000,
+          "closing": 70000
+        },
+        "ECE": {
+          "opening": 55000,
+          "closing": 95000
+        }
+      }
+    },
+    {
+      "name": "IIIT Ranchi",
+      "short_name": "IIITR",
+      "location": "Ranchi",
+      "state": "Jharkhand",
+      "established": 2016,
+      "website": "www.iiitranchi.ac.in",
+      "ranking": 14,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 40000,
+          "closing": 80000
+        },
+        "ECE": {
+          "opening": 65000,
+          "closing": 110000
+        }
+      }
+    },
+    {
+      "name": "IIIT Bhopal",
+      "short_name": "IIITBhopal",
+      "location": "Bhopal",
+      "state": "Madhya Pradesh",
+      "established": 2017,
+      "website": "www.iiitbhopal.ac.in",
+      "ranking": 15,
+      "type": "Institute of National Importance",
+      "branches": {
+        "CSE": {
+          "opening": 45000,
+          "closing": 90000
+        },
+        "IT": {
+          "opening": 70000,
+          "closing": 120000
+        }
+      }
+    }
+  ]
+}

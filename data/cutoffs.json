@@ -1,0 +1,84 @@
+{
+  "jee_advanced_2026": {
+    "description": "Expected JEE Advanced 2026 Qualifying Cutoffs",
+    "general": {
+      "percentile": 93.0,
+      "expected_rank": 95000,
+      "trend": "stable"
+    },
+    "ews": {
+      "percentile": 90.0,
+      "expected_rank": 135000,
+      "trend": "stable"
+    },
+    "obc": {
+      "percentile": 80.0,
+      "expected_rank": 270000,
+      "trend": "stable"
+    },
+    "sc": {
+      "percentile": 55.0,
+      "expected_rank": 600000,
+      "trend": "stable"
+    },
+    "st": {
+      "percentile": 45.0,
+      "expected_rank": 750000,
+      "trend": "stable"
+    },
+    "pwd_general": {
+      "percentile": 35.0,
+      "expected_rank": 880000,
+      "trend": "stable"
+    },
+    "pwd_ews": {
+      "percentile": 35.0,
+      "expected_rank": 880000,
+      "trend": "stable"
+    },
+    "pwd_obc": {
+      "percentile": 35.0,
+      "expected_rank": 880000,
+      "trend": "stable"
+    },
+    "pwd_sc": {
+      "percentile": 35.0,
+      "expected_rank": 880000,
+      "trend": "stable"
+    },
+    "pwd_st": {
+      "percentile": 35.0,
+      "expected_rank": 880000,
+      "trend": "stable"
+    }
+  },
+  "nta_statistics": {
+    "2023": {
+      "total_candidates": 1160000,
+      "appeared": 1040000,
+      "qualified": 260000
+    },
+    "2024": {
+      "total_candidates": 1230000,
+      "appeared": 1120000,
+      "qualified": 280000
+    },
+    "2025_estimated": {
+      "total_candidates": 1300000,
+      "appeared": 1180000,
+      "qualified": 295000
+    },
+    "2026_predicted": {
+      "total_candidates": 1350000,
+      "appeared": 1220000,
+      "qualified": 310000
+    }
+  },
+  "reservation_percentages": {
+    "general": 40.5,
+    "ews": 10.0,
+    "obc": 27.0,
+    "sc": 15.0,
+    "st": 7.5
+  }
+}

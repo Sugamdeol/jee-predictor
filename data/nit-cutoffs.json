@@ -1,0 +1,274 @@
+{
+  "nits": [
+    {
+      "name": "NIT Trichy",
+      "short_name": "NITT",
+      "location": "Tiruchirappalli",
+      "state": "Tamil Nadu",
+      "established": 1964,
+      "website": "www.nitt.edu",
+      "ranking": 1,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 800, "closing": 2500},
+          "other_state": {"opening": 1200, "closing": 4500}
+        },
+        "ECE": {
+          "home_state": {"opening": 2500, "closing": 5000},
+          "other_state": {"opening": 4500, "closing": 8000}
+        },
+        "EEE": {
+          "home_state": {"opening": 4000, "closing": 8000},
+          "other_state": {"opening": 8000, "closing": 15000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 5000, "closing": 10000},
+          "other_state": {"opening": 10000, "closing": 18000}
+        },
+        "Civil": {
+          "home_state": {"opening": 8000, "closing": 15000},
+          "other_state": {"opening": 15000, "closing": 25000}
+        },
+        "Chemical": {
+          "home_state": {"opening": 10000, "closing": 18000},
+          "other_state": {"opening": 18000, "closing": 30000}
+        }
+      }
+    },
+    {
+      "name": "NIT Surathkal",
+      "short_name": "NITK",
+      "location": "Mangalore",
+      "state": "Karnataka",
+      "established": 1960,
+      "website": "www.nitk.ac.in",
+      "ranking": 2,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 1000, "closing": 3000},
+          "other_state": {"opening": 1500, "closing": 5000}
+        },
+        "ECE": {
+          "home_state": {"opening": 3000, "closing": 6000},
+          "other_state": {"opening": 5000, "closing": 10000}
+        },
+        "IT": {
+          "home_state": {"opening": 2500, "closing": 5500},
+          "other_state": {"opening": 4500, "closing": 9000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 6000, "closing": 12000},
+          "other_state": {"opening": 12000, "closing": 20000}
+        },
+        "Civil": {
+          "home_state": {"opening": 10000, "closing": 18000},
+          "other_state": {"opening": 18000, "closing": 30000}
+        }
+      }
+    },
+    {
+      "name": "NIT Warangal",
+      "short_name": "NITW",
+      "location": "Warangal",
+      "state": "Telangana",
+      "established": 1959,
+      "website": "www.nitw.ac.in",
+      "ranking": 3,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 1200, "closing": 3500},
+          "other_state": {"opening": 2000, "closing": 6000}
+        },
+        "ECE": {
+          "home_state": {"opening": 3500, "closing": 7000},
+          "other_state": {"opening": 6000, "closing": 12000}
+        },
+        "EEE": {
+          "home_state": {"opening": 5000, "closing": 10000},
+          "other_state": {"opening": 10000, "closing": 18000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 7000, "closing": 14000},
+          "other_state": {"opening": 14000, "closing": 25000}
+        },
+        "Civil": {
+          "home_state": {"opening": 12000, "closing": 22000},
+          "other_state": {"opening": 22000, "closing": 35000}
+        }
+      }
+    },
+    {
+      "name": "NIT Rourkela",
+      "short_name": "NITR",
+      "location": "Rourkela",
+      "state": "Odisha",
+      "established": 1961,
+      "website": "www.nitrkl.ac.in",
+      "ranking": 4,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 1500, "closing": 4000},
+          "other_state": {"opening": 2500, "closing": 8000}
+        },
+        "ECE": {
+          "home_state": {"opening": 4000, "closing": 8000},
+          "other_state": {"opening": 8000, "closing": 15000}
+        },
+        "IT": {
+          "home_state": {"opening": 3500, "closing": 7500},
+          "other_state": {"opening": 7000, "closing": 14000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 8000, "closing": 15000},
+          "other_state": {"opening": 15000, "closing": 28000}
+        },
+        "Civil": {
+          "home_state": {"opening": 15000, "closing": 25000},
+          "other_state": {"opening": 25000, "closing": 40000}
+        }
+      }
+    },
+    {
+      "name": "NIT Calicut",
+      "short_name": "NITC",
+      "location": "Kozhikode",
+      "state": "Kerala",
+      "established": 1961,
+      "website": "www.nitc.ac.in",
+      "ranking": 5,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 2000, "closing": 5000},
+          "other_state": {"opening": 3500, "closing": 9000}
+        },
+        "ECE": {
+          "home_state": {"opening": 5000, "closing": 10000},
+          "other_state": {"opening": 9000, "closing": 18000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 10000, "closing": 18000},
+          "other_state": {"opening": 18000, "closing": 32000}
+        }
+      }
+    },
+    {
+      "name": "NIT Jaipur",
+      "short_name": "MNIT",
+      "location": "Jaipur",
+      "state": "Rajasthan",
+      "established": 1963,
+      "website": "www.mnit.ac.in",
+      "ranking": 6,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 2500, "closing": 6000},
+          "other_state": {"opening": 4000, "closing": 10000}
+        },
+        "ECE": {
+          "home_state": {"opening": 6000, "closing": 12000},
+          "other_state": {"opening": 10000, "closing": 20000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 12000, "closing": 22000},
+          "other_state": {"opening": 20000, "closing": 35000}
+        }
+      }
+    },
+    {
+      "name": "NIT Allahabad",
+      "short_name": "MNNIT",
+      "location": "Prayagraj",
+      "state": "Uttar Pradesh",
+      "established": 1961,
+      "website": "www.mnnit.ac.in",
+      "ranking": 7,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 3000, "closing": 7000},
+          "other_state": {"opening": 5000, "closing": 12000}
+        },
+        "ECE": {
+          "home_state": {"opening": 7000, "closing": 14000},
+          "other_state": {"opening": 12000, "closing": 22000}
+        },
+        "IT": {
+          "home_state": {"opening": 6000, "closing": 12000},
+          "other_state": {"opening": 10000, "closing": 18000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 14000, "closing": 25000},
+          "other_state": {"opening": 22000, "closing": 38000}
+        }
+      }
+    },
+    {
+      "name": "NIT Kurukshetra",
+      "short_name": "NITKKR",
+      "location": "Kurukshetra",
+      "state": "Haryana",
+      "established": 1963,
+      "website": "www.nitkkr.ac.in",
+      "ranking": 8,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 4000, "closing": 9000},
+          "other_state": {"opening": 7000, "closing": 15000}
+        },
+        "ECE": {
+          "home_state": {"opening": 9000, "closing": 18000},
+          "other_state": {"opening": 15000, "closing": 28000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 18000, "closing": 30000},
+          "other_state": {"opening": 28000, "closing": 45000}
+        }
+      }
+    },
+    {
+      "name": "NIT Durgapur",
+      "short_name": "NITDGP",
+      "location": "Durgapur",
+      "state": "West Bengal",
+      "established": 1960,
+      "website": "www.nitdgp.ac.in",
+      "ranking": 9,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 5000, "closing": 12000},
+          "other_state": {"opening": 9000, "closing": 20000}
+        },
+        "ECE": {
+          "home_state": {"opening": 12000, "closing": 22000},
+          "other_state": {"opening": 20000, "closing": 35000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 22000, "closing": 38000},
+          "other_state": {"opening": 35000, "closing": 55000}
+        }
+      }
+    },
+    {
+      "name": "NIT Surat",
+      "short_name": "SVNIT",
+      "location": "Surat",
+      "state": "Gujarat",
+      "established": 1961,
+      "website": "www.svnit.ac.in",
+      "ranking": 10,
+      "branches": {
+        "CSE": {
+          "home_state": {"opening": 6000, "closing": 14000},
+          "other_state": {"opening": 10000, "closing": 22000}
+        },
+        "ECE": {
+          "home_state": {"opening": 14000, "closing": 28000},
+          "other_state": {"opening": 22000, "closing": 40000}
+        },
+        "Mechanical": {
+          "home_state": {"opening": 28000, "closing": 45000},
+          "other_state": {"opening": 40000, "closing": 65000}
+        }
+      }
+    }
+  ]
+}
