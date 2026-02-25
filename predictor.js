@@ -215,4 +215,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+// Alias for HTML compatibility
+function calculatePrediction() {
+    calculateRank();
+}
+
 // Deployed Wed Feb 25 04:29:18 UTC 2026
