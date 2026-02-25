@@ -3,117 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JEE Mains 2026 Rank Predictor | Updated</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>JEE Mains 2026 Percentile & Rank Predictor</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>JEE Mains 2026</h1>
-            <p class="subtitle">Percentile & Rank Predictor</p>
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">🎯 JEE Mains 2026</div>
+            <h1>Percentile & Rank Predictor</h1>
+            <p class="tagline">Know where you stand before NTA announces</p>
         </header>
 
-        <div class="card">
+        <!-- Input Section -->
+        <section class="input-section">
             <h2>Enter Your Marks</h2>
-            <div class="input-grid">
-                <div class="input-group">
-                    <label for="physics">Physics (out of 100)</label>
-                    <input type="number" id="physics" min="0" max="100" placeholder="e.g. 65">
+            
+            <div class="marks-grid">
+                <div class="subject-card">
+                    <label>Physics</label>
+                    <input type="number" id="physics" min="0" max="100" placeholder="0-100">
                 </div>
-                <div class="input-group">
-                    <label for="chemistry">Chemistry (out of 100)</label>
-                    <input type="number" id="chemistry" min="0" max="100" placeholder="e.g. 70">
+                <div class="subject-card">
+                    <label>Chemistry</label>
+                    <input type="number" id="chemistry" min="0" max="100" placeholder="0-100">
                 </div>
-                <div class="input-group">
-                    <label for="math">Mathematics (out of 100)</label>
-                    <input type="number" id="math" min="0" max="100" placeholder="e.g. 75">
-                </div>
-            </div>
-
-            <div class="input-group category-select">
-                <label for="category">Category</label>
-                <select id="category">
-                    <option value="general">General</option>
-                    <option value="obc">OBC-NCL</option>
-                    <option value="sc">SC</option>
-                    <option value="st">ST</option>
-                    <option value="ews">EWS</option>
-                    <option value="pwd_general">PwD General</option>
-                    <option value="pwd_obc">PwD OBC</option>
-                    <option value="pwd_sc">PwD SC</option>
-                    <option value="pwd_st">PwD ST</option>
-                </select>
-            </div>
-
-            <div class="input-group">
-                <label for="totalStudents">Expected Total Students (2026)</label>
-                <input type="number" id="totalStudents" value="1400000" min="1000000" max="2000000">
-                <small>Default: 14 lakh (adjust if needed)</small>
-            </div>
-
-            <button onclick="calculateRank()" class="btn-primary">Predict My Rank</button>
-        </div>
-
-        <div id="results" class="results hidden">
-            <div class="card result-card">
-                <h2>Your Predicted Results</h2>
-                <div class="result-grid">
-                    <div class="result-item">
-                        <span class="label">Total Marks</span>
-                        <span id="totalMarks" class="value">-</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="label">Percentile</span>
-                        <span id="percentile" class="value highlight">-</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="label">Expected Rank</span>
-                        <span id="rank" class="value highlight">-</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="label">JEE Advanced</span>
-                        <span id="advancedEligible" class="value">-</span>
-                    </div>
+                <div class="subject-card">
+                    <label>Mathematics</label>
+                    <input type="number" id="math" min="0" max="100" placeholder="0-100">
                 </div>
             </div>
 
-            <div class="card">
-                <h2>Subject-wise Percentile</h2>
-                <div class="subject-percentiles">
-                    <div class="subject-item">
-                        <span>Physics</span>
-                        <span id="physicsPercentile">-</span>
-                    </div>
-                    <div class="subject-item">
-                        <span>Chemistry</span>
-                        <span id="chemistryPercentile">-</span>
-                    </div>
-                    <div class="subject-item">
-                        <span>Mathematics</span>
-                        <span id="mathPercentile">-</span>
-                    </div>
+            <div class="quick-total">
+                <label>Or enter total marks directly:</label>
+                <input type="number" id="totalMarks" min="0" max="300" placeholder="0-300">
+            </div>
+
+            <div class="options-grid">
+                <div class="option-group">
+                    <label>Session</label>
+                    <select id="session">
+                        <option value="jan">January 2026</option>
+                        <option value="april">April 2026</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Category</label>
+                    <select id="category">
+                        <option value="General">General</option>
+                        <option value="EWS">EWS</option>
+                        <option value="OBC-NCL">OBC-NCL</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                        <option value="PwD">PwD</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Shift Difficulty</label>
+                    <select id="difficulty">
+                        <option value="moderate">Moderate</option>
+                        <option value="easy">Easy</option>
+                        <option value="difficult">Difficult</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Home State</label>
+                    <select id="homeState">
+                        <option value="other">Other State</option>
+                        <option value="andhra">Andhra Pradesh</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="tamilnadu">Tamil Nadu</option>
+                        <option value="up">Uttar Pradesh</option>
+                        <option value="bihar">Bihar</option>
+                        <option value="wb">West Bengal</option>
+                        <option value="delhi">Delhi</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="card">
-                <h2>Possible NITs/IIITs</h2>
-                <div id="collegeMatches" class="college-list">
-                    <p>Enter marks to see possible colleges</p>
+            <button class="calculate-btn" onclick="calculatePrediction()">
+                🔮 Predict My Rank
+            </button>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="results" style="display: none;">
+            <h2>Your Predicted Result</h2>
+            
+            <div class="result-cards">
+                <div class="result-card percentile">
+                    <div class="label">Expected Percentile</div>
+                    <div class="value" id="predictedPercentile">--</div>
+                    <div class="confidence">Confidence: ±0.5%</div>
+                </div>
+                <div class="result-card rank">
+                    <div class="label">All India Rank (AIR)</div>
+                    <div class="value" id="predictedRank">--</div>
+                    <div class="confidence">Expected Range</div>
+                </div>
+                <div class="result-card category-rank">
+                    <div class="label">Category Rank</div>
+                    <div class="value" id="categoryRank">--</div>
+                    <div class="confidence" id="categoryLabel">General</div>
+                </div>
+                <div class="result-card marks-card">
+                    <div class="label">Total Marks</div>
+                    <div class="value" id="displayMarks">--</div>
+                    <div class="confidence">Out of 300</div>
                 </div>
             </div>
 
-            <div class="card info-card">
-                <h3>About This Predictor</h3>
-                <ul>
-                    <li>Based on JEE Mains 2024 data and trends</li>
-                    <li>Actual ranks may vary by +/- 10%</li>
-                    <li>Percentile formula: 100 × (1 - Rank/Total)</li>
-                    <li>Category cutoffs are approximate</li>
-                </ul>
+            <div class="qualifying-status" id="qualifyingStatus">
+                <span class="status-icon">✅</span>
+                <span class="status-text">Qualified for JEE Advanced</span>
             </div>
-        </div>
+
+            <!-- College Predictor -->
+            <div class="college-section">
+                <h3>🏫 College Predictor</h3>
+                <p class="college-subtitle">Based on your expected rank, you may get:</p>
+                
+                <div class="college-grid" id="collegeGrid">
+                    <!-- Colleges will be populated by JS -->
+                </div>
+            </div>
+        </section>
     </div>
 
-    <script src="predictor.js"></script>
+    <script src="js/predictor.js"></script>
 </body>
 </html>
