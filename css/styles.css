@@ -319,15 +319,15 @@ body {
     transform: translateX(5px);
 }
 
-.college-card.safe {
+.college-card.high {
     border-left-color: var(--success);
 }
 
-.college-card.moderate {
+.college-card.medium {
     border-left-color: var(--warning);
 }
 
-.college-card.difficult {
+.college-card.low {
     border-left-color: var(--danger);
 }
 

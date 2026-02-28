@@ -135,16 +135,23 @@ function calculatePrediction() {
     document.getElementById('categoryLabel').textContent = (catKey === 'general') ? 'General Category' : `${category} Rank (Est.)`;
     document.getElementById('displayMarks').textContent = totalMarks;
 
+    // Sync What-If Slider
+    const slider = document.getElementById('marksSlider');
+    slider.value = totalMarks;
+    updateWhatIf(totalMarks);
+
     // Qualifying Status
     const cutoffObj = cutoffData.jee_advanced_2026[catKey] || cutoffData.jee_advanced_2026['general'];
     const cutoff = cutoffObj.percentile;
     const statusDiv = document.getElementById('qualifyingStatus');
     if (percentile >= cutoff) {
-        statusDiv.innerHTML = '✅ <span class="status-text">Qualified for JEE Advanced</span>';
+        statusDiv.innerHTML = '<span class="status-icon">✅</span> <span class="status-text">Qualified for JEE Advanced</span>';
+        statusDiv.className = 'qualifying-status';
         statusDiv.style.background = '#d1fae5';
         statusDiv.style.color = '#065f46';
     } else {
-        statusDiv.innerHTML = '❌ <span class="status-text">Below Expected Cutoff for JEE Advanced</span>';
+        statusDiv.innerHTML = '<span class="status-icon">❌</span> <span class="status-text">Below Expected Cutoff for JEE Advanced</span>';
+        statusDiv.className = 'qualifying-status not-qualified';
         statusDiv.style.background = '#fee2e2';
         statusDiv.style.color = '#991b1b';
     }
@@ -179,32 +186,52 @@ function updateCollegePredictor(rank, category, homeState) {
 
     const userState = stateMap[homeState] || '';
 
-    const matches = colleges.filter(c => {
-        return Object.values(c.branches).some(b => {
+    // Find matches and calculate chance
+    const matches = [];
+    colleges.forEach(c => {
+        Object.entries(c.branches).forEach(([branchName, branchData]) => {
             const isHomeState = c.state.toLowerCase() === userState;
-            const closing = (isHomeState && b.home_state) ? b.home_state.closing : (b.other_state ? b.other_state.closing : b.closing);
-            return (closing * 1.2) >= rank; // 20% buffer for prediction
-        });
-    }).sort((a, b) => a.ranking - b.ranking).slice(0, 6);
+            const cutoffInfo = (isHomeState && branchData.home_state) ? branchData.home_state : (branchData.other_state || branchData);
+            const closing = cutoffInfo.closing;
+            
+            let chance = 'low';
+            let chanceClass = 'low';
+            if (rank <= closing * 0.9) { chance = 'High'; chanceClass = 'high'; }
+            else if (rank <= closing * 1.1) { chance = 'Medium'; chanceClass = 'medium'; }
+            else if (rank <= closing * 1.25) { chance = 'Low'; chanceClass = 'low'; }
+            else return; // Skip if rank is way beyond closing
 
-    if (matches.length === 0) {
-        grid.innerHTML = '<p class="no-colleges">No matches found in top institutes. Try higher marks!</p>';
+            matches.push({
+                ...c,
+                branch: branchName,
+                closing: closing,
+                chance: chance,
+                chanceClass: chanceClass,
+                isHomeState: isHomeState
+            });
+        });
+    });
+
+    // Sort by ranking and then by chance
+    const sortedMatches = matches.sort((a, b) => a.ranking - b.ranking).slice(0, 9);
+
+    if (sortedMatches.length === 0) {
+        grid.innerHTML = '<p class="no-colleges">No matches found in top institutes. Try higher marks or different category!</p>';
         return;
     }
 
-    matches.forEach(c => {
+    sortedMatches.forEach(m => {
         const card = document.createElement('div');
-        card.className = 'college-card';
-        const isHomeState = c.state.toLowerCase() === userState;
-        card.style.borderLeft = isHomeState ? '4px solid #10b981' : '4px solid #1e40af';
+        card.className = `college-card ${m.chanceClass}`;
         
         card.innerHTML = `
-            <div style="font-weight:700; color:#1e2937;">${c.short_name}</div>
-            <div style="font-size:0.85rem; color:#6b7280;">${c.location}, ${c.state}</div>
-            <div style="margin-top:8px; font-size:0.8rem; display:flex; justify-content:space-between;">
-                <span style="background:#f3f4f6; padding:2px 8px; border-radius:4px;">Rank #${c.ranking}</span>
-                ${isHomeState ? '<span style="color:#059669; font-weight:600;">Home State Quota</span>' : ''}
+            <div class="college-name">${m.short_name} - ${m.name}</div>
+            <div class="college-branch">${m.branch} Engineering</div>
+            <div style="margin-top:12px; display:flex; justify-content:space-between; align-items:center;">
+                <span class="college-chance ${m.chanceClass}">${m.chance} Chance</span>
+                <span style="font-size:0.75rem; color:#6b7280;">Est. Cutoff: ${m.closing.toLocaleString()}</span>
             </div>
+            ${m.isHomeState ? '<div style="font-size:0.7rem; color:#059669; margin-top:5px; font-weight:600;">Home State Quota Applied</div>' : ''}
         `;
         grid.appendChild(card);
     });
