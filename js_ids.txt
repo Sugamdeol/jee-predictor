@@ -1,0 +1,17 @@
+category
+categoryLabel
+categoryRank
+collegeGrid
+difficulty
+displayMarks
+homeState
+marksPercentileChart
+marksSlider
+predictedPercentile
+predictedRank
+qualifyingStatus
+results
+session
+sliderValue
+totalMarks
+whatifResult
