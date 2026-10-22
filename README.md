@@ -1,4 +1,6 @@
 # 🎓 JEE Mains Predictor
+**Live demo:** https://sugamdeol.github.io/jee-predictor/
+
 
 **JEE Mains 2026 percentile & rank predictor** — enter your expected marks, get your predicted percentile and rank, and check NIT/IIIT admission chances against real cutoff data.
 
